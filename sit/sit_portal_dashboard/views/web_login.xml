@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="web_login" inherit_id="website.login_layout" name="Portal Login Page">
+        <xpath expr="t" position="replace">
+            <t t-call="sit_portal_dashboard.frontend_layout_login">
+                <div class="col-lg-6 col-md-6 col-sm-12 d-inline-block pull-left p-0 pt64">
+                    <div class="col-lg-12 col-md-12 text-center">
+                        <h3 class="text-white">Wir sind Spielen</h3>
+                    </div>
+                    <img src="/sit_portal_dashboard/static/src/img/portal.png"
+                         class="img img-responsive s-portal-img"/>
+
+                    <!--   <div class="col-md-12 col-lg-12 text-center d-block mt32">
+                           <a href="https://weship.at/kontakt/" class="btn btn-primary">Write Us</a>
+                       </div>-->
+                </div>
+                <div class="oe_website_login_container s-white-height col-lg-6 col-md-6 col-sm-12
+                    col-xs-12 d-inline-block pull-right p-0" t-raw="0"/>
+            </t>
+        </xpath>
+    </template>
+    <!-- Login Form-->
+    <template id="login" inherit_id="web.login" name="Login Form">
+        <xpath expr="//div[@class='form-group field-db']" position="replace">
+            <div></div>
+        </xpath>
+        <xpath expr="//button[@type='submit']" position="replace">
+            <button type="submit" class="btn btn-primary btn-block" disabled="disabled">
+                Log in
+            </button>
+        </xpath>
+        <xpath expr="//input[@name='login']" position="attributes">
+            <attribute name="placeholder"></attribute>
+            <attribute name="t-attf-class">form-control s-form-height #{'form-control-sm' if form_small else ''}
+            </attribute>
+        </xpath>
+        <xpath expr="//input[@name='login']" position="after">
+            <span class="floating-label">User Name</span>
+        </xpath>
+        <xpath expr="//label[@for='login']" position="replace">
+
+        </xpath>
+        <xpath expr="//div[hasclass('field-login')]" position="attributes">
+            <attribute name="class">field-login form-group s-relative</attribute>
+        </xpath>
+        <!-- for password-->
+        <xpath expr="//input[@name='password']" position="attributes">
+            <attribute name="placeholder"></attribute>
+            <attribute name="t-attf-class">form-control s-form-height #{'form-control-sm' if form_small else ''}
+            </attribute>
+        </xpath>
+        <xpath expr="//input[@name='password']" position="after">
+            <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+            <span class="floating-label">Password</span>
+        </xpath>
+        <xpath expr="//label[@for='password']" position="replace">
+        </xpath>
+        <xpath expr="//div[hasclass('field-password')]" position="attributes">
+            <attribute name="class">field-password form-group s-relative</attribute>
+        </xpath>
+        <xpath expr="//form[@class='oe_login_form']" position="before">
+            <div class="col-md-12 text-center mt32">
+                <a href="/" class="navbar-brand logo">
+                    <span t-field="website.logo" t-options="{'widget': 'image'}" role="img"
+                          t-att-aria-label="'Logo of %s' % website.name" t-att-title="website.name"/>
+                </a>
+            </div>
+            <div class="col-md-12 col-lg-12 text-center w-100 mt32">
+                <p class="s-font">Login</p>
+            </div>
+        </xpath>
+
+        <xpath expr="//button[@name='redirect']" position="replace">
+            <button type="submit" name="redirect" value="/web/become"
+                    class=" superuser btn btn-link btn-sm btn-block">Log in as superuser
+            </button>
+        </xpath>
+    </template>
+    <template id="signup" inherit_id="auth_signup.login" name="Sign up - Reset Password">
+        <xpath expr="//div[hasclass('justify-content-between')]" position="attributes">
+            <attribute name="justify-content-between mt-2 d-flex small text-center"></attribute>
+        </xpath>
+        <xpath expr="//a[@t-if='reset_password_enabled']" position="replace">
+            <a t-if="reset_password_enabled" class="s-reset-password"
+               t-attf-href="/web/reset_password?{{ keep_query() }}">Reset Password
+            </a>
+        </xpath>
+    </template>
+</odoo>

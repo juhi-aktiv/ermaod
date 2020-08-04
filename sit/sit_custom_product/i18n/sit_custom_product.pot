@@ -1,0 +1,76 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sit_custom_product
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-12 13:53+0000\n"
+"PO-Revision-Date: 2020-02-12 13:53+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sit_custom_product
+#: model:ir.model.fields,field_description:sit_custom_product.field_product_product__bestsell_number
+msgid "Bestsell Number"
+msgstr ""
+
+#. module: sit_custom_product
+#: model:ir.model.fields,field_description:sit_custom_product.field_product_category__categ_code
+msgid "Category code"
+msgstr ""
+
+#. module: sit_custom_product
+#: model:ir.model.fields,field_description:sit_custom_product.field_product_product__is_creative
+msgid "Creative"
+msgstr ""
+
+#. module: sit_custom_product
+#: model:ir.model.fields,field_description:sit_custom_product.field_product_product__is_eventmodule
+msgid "Eventmodule"
+msgstr ""
+
+#. module: sit_custom_product
+#: model:ir.model.fields,field_description:sit_custom_product.field_product_product__minimal
+msgid "Minimal"
+msgstr ""
+
+#. module: sit_custom_product
+#: model:ir.model.fields,field_description:sit_custom_product.field_product_product__is_partner_part
+msgid "Partner part"
+msgstr ""
+
+#. module: sit_custom_product
+#: model:ir.model.fields,field_description:sit_custom_product.field_product_product__percent_return
+msgid "Percent Return"
+msgstr ""
+
+#. module: sit_custom_product
+#: model:ir.model,name:sit_custom_product.model_product_product
+msgid "Product"
+msgstr ""
+
+#. module: sit_custom_product
+#: model:ir.model,name:sit_custom_product.model_product_category
+msgid "Product Category"
+msgstr ""
+
+#. module: sit_custom_product
+#: model:ir.model.fields,field_description:sit_custom_product.field_product_product__is_stocktaking
+msgid "Stocktaking"
+msgstr ""
+
+#. module: sit_custom_product
+#: model:ir.model.fields,field_description:sit_custom_product.field_product_product__is_sump_up
+msgid "Sum up"
+msgstr ""
+
+#. module: sit_custom_product
+#: model:ir.model.fields,field_description:sit_custom_product.field_product_product__is_variable
+msgid "Variable"
+msgstr ""

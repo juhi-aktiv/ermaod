@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="inventory_page" name="Inventory">
+        <t t-call="website.layout">
+            <div class="d-inline-block w-100 s-remove-footer">
+                <div class="container">
+                    <h1 class="h1-s-heading mt16 mb16">Products</h1>
+                    <div class="row s-inv-border mt16">
+                        <div class="col-md-12 mt16 s-right-pager">
+                            <t t-call="website.pager"/>
+                        </div>
+                        <div class="col-md-12 s-border-bottom-inv">
+                            <div class="col-md-6 float-left">
+                                <p class="s-inv_pclass mb0 s-inv-proname-label">Product Name</p>
+                            </div>
+                            <div class="col-md-6 float-left">
+                                <p class="s-inv_pclass mb0 s-inv-proname-label">Product Price</p>
+                            </div>
+                        </div>
+                        <t t-foreach="products" t-as="product">
+                            <div class="col-md-12 s-border-bottom-inv">
+                                <div class="col-md-6 float-left">
+                                    <!--
+                                                                            <t t-set="product_url" t-value="keep(product.website_url)" />
+                                    -->
+                                    <p class="s-inv_pclass mb0">
+                                        <a t-field="product.name"></a>
+                                    </p>
+                                </div>
+                                <div class="col-md-6 float-left">
+                                    <p class="s-inv_pclass mb0" t-field="product.list_price"></p>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="website_hr_recruitment_inherit" inherit_id="website_hr_recruitment.apply">
+        <xpath expr="//div[@id='wrap']" position="replace">
+            <div id="wrap" class="container">
+                <div class="col-md-12 d-inline-block custom_class_form">
+                    <h1 class="float-left  mt32 h1_class_custom_sit">
+                        Job Application Form
+                    </h1>
+                    <h2 t-if="job" class="mt32 h2_class_custom_sit">
+                        <span t-field="job.name"/>
+                    </h2>
+                </div>
+                <div class="row mt-3">
+                    <section id="forms" class="col">
+                        <form id="hr_recruitment_form" action="/website_form_recruitment/" method="post"
+                              class="s_website_form">
+                            <input type="hidden" name="job_id" t-att-value="job and job.id"/>
+                            <input type="hidden" name="department_id" t-att-value="job and job.department_id.id"/>
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <div>
+                                <div class="form-group row form-field o_website_form_required_custom mb32">
+                                    <div class="col-lg-4 col-md-4">
+                                        <input type="text" placeholder="Your Name *"
+                                               class="required_fields effect-2 form-control o_website_form_input"
+                                               name="partner_name"
+                                               required=""/>
+                                        <span class="focus-border"></span>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4">
+                                        <input type="email" placeholder="Email *"
+                                               class="required_fields effect-2 form-control o_website_form_input"
+                                               name="email_from"
+                                               required=""/>
+                                        <span class="focus-border"></span>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4">
+                                        <input type="text" placeholder="Phone Number *"
+                                               class="required_fields effect-2 form-control o_website_form_input"
+                                               name="partner_phone"
+                                               required=""/>
+                                        <span class="focus-border"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 sit_custom_edu_details w-100 d-inline-block">
+                                    <p class="sit_custom_p_class">
+                                        <i class="fa fa-graduation-cap sit_fa_custom"></i>
+                                        Education Details
+                                    </p>
+                                </div>
+                                <div class="mainedu_details">
+                                    <div class="form-group row form-field mb32">
+                                        <div class="sit_relative">
+                                            <div class=" col-lg-12 col-md-12 sit_box">
+                                                <t t-set="degree_ids"
+                                                   t-value="request.env['hr.recruitment.degree'].sudo().search([])"/>
+
+                                                <select for="type_id"
+                                                        t-attf-class="effect-2 type_ids #{'sit_present_type' if len(degree_ids) else 'sit_absent_type'}"
+                                                        data="Degree" name="type_id">
+                                                    <option value="0">Select Degree</option>
+                                                    <t t-foreach="degree_ids" t-as="degree">
+                                                        <option t-att-id="degree.id" t-att-value="degree.id">
+                                                            <t t-esc="degree.name"/>
+                                                        </option>
+                                                    </t>
+                                                    <!-- <option value="-1">Other</option>-->
+                                                </select>
+                                                <!--<span class="focus-border"></span>-->
+                                            </div>
+                                        </div>
+                                        <div class="sit_relative">
+                                            <div class="col-lg-12 col-md-12 sit_box">
+                                                <t t-set="institute_ids"
+                                                   t-value="request.env['hr.institute'].sudo().search([])"/>
+                                                <t t-if="len(institute_ids)">
+                                                    <select for="institute_id"
+                                                            t-attf-class="effect-2 institute_ids #{'sit_present' if len(institute_ids) else 'sit_absent'}"
+                                                            data="Institute"
+                                                            name="institute_id">
+                                                        <option value="0">Select Institute</option>
+                                                        <t t-foreach="institute_ids" t-as="institute">
+                                                            <option t-att-id="institute.id" t-att-value="institute.id">
+                                                                <t t-esc="institute.name"/>
+                                                            </option>
+                                                        </t>
+                                                        <option value="-1">Other</option>
+                                                    </select>
+                                                </t>
+                                                <t t-else="">
+                                                    <input type="text" placeholder="Institute Name"
+                                                           t-attf-class="effect-2 form-control o_website_form_input #{'sit_input_present' if not len(institute_ids) else 'sit_input_absent'}"
+                                                           name="institute_id"
+                                                    />
+                                                </t>
+                                                <!--<span class="focus-border"></span>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4">
+                                            <input type="date" placeholder="Qualified Year *"
+                                                   class="edu_date effect-2 form-control o_website_form_input"
+                                                   name="qualified_year"
+                                            />
+                                            <span class="focus-border"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row form-field mb32">
+                                        <div class="col-lg-6 col-md-6 ">
+                                            <div class='file-input'>
+                                                <input type="file" name="attachment"
+                                                       class="form-control o_website_form_input"/>
+                                                <span class='button'>Choose</span>
+                                                <span class='label' data-js-label="">Please Select Transcripts</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="edu_details"></div>
+                                <div class="w-100 d-inline-block mb32">
+                                    <a role="button" class="add_details btn btn-primary"
+                                       style="border-radius:0px;color:#fff">
+                                        Add Education
+                                        <input type="hidden" id="details" value="edu"/>
+                                    </a>
+
+                                </div>
+                                <div class="col-md-12 sit_custom_edu_details w-100 d-inline-block">
+                                    <p class="sit_custom_p_class">
+                                        <i class="fa fa-certificate sit_fa_custom"></i>
+                                        Certifications
+                                    </p>
+                                </div>
+                                <div class="main_certificate_details">
+                                    <div class="form-group row form-field mb32">
+                                        <div class="sit_relative">
+                                            <div class="col-lg-12 col-md-12 sit_box">
+                                                <t t-set="course_ids"
+                                                   t-value="request.env['cert.cert'].sudo().search([])"/>
+                                                <t t-if="len(course_ids)">
+                                                    <select for="course_id" class="effect-2" name="course_id">
+                                                        <option value="0">Select Course</option>
+                                                        <t t-foreach="course_ids" t-as="course">
+                                                            <option t-att-id="course.id" t-att-value="course.id"
+                                                                    name="course_id">
+                                                                <t t-esc="course.name"/>
+                                                            </option>
+                                                        </t>
+                                                    </select>
+                                                </t>
+                                                <t t-else="">
+                                                    <input type="text" placeholder="Course Name"
+                                                           t-attf-class="effect-2 form-control o_website_form_input #{'sit_input_present' if not len(course_ids) else 'sit_input_absent'}"
+                                                           name="course_id"
+                                                    />
+                                                </t>
+                                                <!--<span class="focus-border"></span>-->
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-md-4">
+                                            <input placeholder="Levels of Completion" type="text"
+                                                   class="sit_custom_level effect-2 form-control o_website_form_input"
+                                                   name="levels"
+                                            />
+                                            <span class="focus-border"></span>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4">
+                                            <input type="date" placeholder="Year Of Completion"
+                                                   class="cert_date effect-2 form-control o_website_form_input"
+                                                   name="year"
+                                            />
+                                            <span class="focus-border"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row form-field mb32">
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class='file-input'>
+                                                <input type='file' name="cert_attachment"
+                                                       class="form-control o_website_form_input"/>
+                                                <span class='button'>Choose</span>
+                                                <span class='label' data-js-label="">Please Select Certificates</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="cert_details"></div>
+                                <div class="w-100 d-inline-block mb32">
+                                    <a role="button" class="add_details btn btn-primary"
+                                       style="border-radius:0px;color:#fff">
+                                        Add Certification
+                                        <input type="hidden" id="details" value="cert"/>
+                                    </a>
+                                </div>
+                                <div class="col-md-12 sit_custom_edu_details w-100 d-inline-block">
+                                    <p class="sit_custom_p_class">
+                                        <i class="fa fa-history sit_fa_custom"></i>
+                                        Professional Experience
+                                    </p>
+                                </div>
+                                <div class="prof_exp_details">
+                                    <div class="form-group row form-field mb32">
+                                        <div class="col-lg-4 col-md-4">
+                                            <input placeholder="Location" type="text"
+                                                   class="sit_custom_location effect-2 form-control o_website_form_input"
+                                                   name="location"
+                                            />
+                                            <span class="focus-border"></span>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4">
+                                            <input type="date" placeholder="Start Date"
+                                                   class="sit_s_date effect-2 form-control o_website_form_input"
+                                                   name="from_date"
+                                            />
+                                            <span class="focus-border"></span>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4">
+                                            <input type="date" placeholder="End Date"
+                                                   class="sit_e_date effect-2 form-control o_website_form_input"
+                                                   name="to_date"
+                                            />
+                                            <span class="focus-border"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row form-field  mb32">
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class='file-input'>
+                                                <input type='file' class="form-control o_website_form_input"/>
+                                                <span class='button'>Choose</span>
+                                                <span class='label' data-js-label="">Please Select Experience Certificates
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="prof_details"></div>
+                                <div class="w-100 d-inline-block mb32">
+                                    <a role="button" class="add_details btn btn-primary"
+                                       style="border-radius:0px;color:#fff">
+                                        Add Profession
+                                        <input type="hidden" id="details" value="prof"/>
+                                    </a>
+
+                                </div>
+                                <div class="form-group row form-field mb32">
+                                    <div class="col-lg-4 col-md-4">
+                                        <input type="number" placeholder="Expected Salary"
+                                               class="effect-2 form-control o_website_form_input" name="salary_expected"
+                                        />
+                                        <span class="focus-border"></span>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group row form-field mb32">
+                                    <div class="col-lg-12 col-md-12">
+                                        <textarea placeholder="Description" class="effect-2 form-control o_website_form_input"
+                                                  name="description"></textarea>
+                                        <span class="focus-border"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row form-field o_website_form_custom mb32 col-md-12">
+
+                                    <div class='file-input'>
+                                        <input type='file' class="form-control o_website_form_input"/>
+                                        <span class='button'>Choose</span>
+                                        <span class='label' data-js-label="" name="Resume">Upload Resume</span>
+                                    </div>
+
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-8 col-lg-7" id="custom_form_submit">
+                                        <a href="#" role="button" class="btn btn-primary btn-lg">
+                                            Submit
+                                        </a>
+                                        <span id="o_website_form_result"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </xpath>
+    </template>
+    <template id="education_details" name="Education Details">
+        <div class="mainedu_details mt32">
+            <div class="form-group row form-field mb32 sit_border">
+                <div class="sit_relative">
+                    <div class=" col-lg-12 col-md-12 sit_box">
+                        <t t-set="degree_ids"
+                           t-value="request.env['hr.recruitment.degree'].sudo().search([])"/>
+
+                        <select for="type_id"
+                                t-attf-class="effect-2 type_ids #{'sit_present_type' if len(degree_ids) else 'sit_absent_type'}"
+                                data="Degree" name="type_id" required="">
+                            <option value="0">Select Degree *</option>
+                            <t t-foreach="degree_ids" t-as="degree">
+                                <option t-att-id="degree.id" t-att-value="degree.id">
+                                    <t t-esc="degree.name"/>
+                                </option>
+                            </t>
+                            <!--  <option value="-1">Other</option>-->
+                        </select>
+
+                        <!--  <input type="text"
+                                 t-attf-class="effect-2 form-control o_website_form_input #{'sit_input_present_type' if not len(degree_ids) else 'sit_input_absent_type'}"
+                                 value="demo" name="type_char"
+                          />-->
+
+                        <!--<span class="focus-border"></span>-->
+                    </div>
+                </div>
+                <div class="sit_relative">
+                    <div class="col-lg-12 col-md-12 sit_box">
+                        <t t-set="institute_ids"
+                           t-value="request.env['hr.institute'].sudo().search([])"/>
+                        <t t-if="len(institute_ids)">
+                            <select for="institute_id"
+                                    t-attf-class="effect-2 institute_ids #{'sit_present' if len(institute_ids) else 'sit_absent'}"
+                                    data="Institute"
+                                    name="institute_id" required="">
+                                <option value="0">Select Institute *</option>
+                                <t t-foreach="institute_ids" t-as="institute">
+                                    <option t-att-id="institute.id" t-att-value="institute.id">
+                                        <t t-esc="institute.name"/>
+                                    </option>
+                                </t>
+                                <option value="-1">Other</option>
+                            </select>
+                        </t>
+                        <t t-else="">
+                            <input type="text" placeholder="Institute Name"
+                                   t-attf-class="effect-2 form-control o_website_form_input #{'sit_input_present' if not len(institute_ids) else 'sit_input_absent'}"
+                                   name="institute_id"
+                            />
+                        </t>
+                        <!--<span class="focus-border"></span>-->
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <input type="date" placeholder="Qualified Year *"
+                           class="edu_date effect-2 form-control o_website_form_input"
+                           name="qualified_year" required=""
+                    />
+                    <!--<span class="focus-border"></span>-->
+                </div>
+            </div>
+
+            <div class="form-group row form-field mb32">
+                <div class="col-lg-6 col-md-6">
+                    <div class='file-input'>
+                        <input type="file" name="attachment" class="form-control o_website_form_input"/>
+                        <span class='button'>Choose</span>
+                        <span class='label' data-js-label="">Please Select Transcripts</span>
+                    </div>
+                </div>
+            </div>
+            <div class="text-right">
+                <a class="btn btn-danger btn-sm" id="remove_detail" style="color:#fff">Remove</a>
+            </div>
+        </div>
+    </template>
+    <template id="certification_details" name="Education Details">
+        <div class="main_certificate_details ">
+            <div class="form-group row form-field mb32 pt32 sit_border">
+                <div class="sit_relative">
+                    <div class="col-lg-12 col-md-12 sit_box">
+                        <t t-set="course_ids"
+                           t-value="request.env['cert.cert'].sudo().search([])"/>
+                        <t t-if="len(course_ids)">
+                            <select for="course_id" class="effect-2" name="course_id">
+                                <option value="0">Select Course</option>
+                                <t t-foreach="course_ids" t-as="course">
+                                    <option t-att-id="course.id" t-att-value="course.id"
+                                            name="course_id">
+                                        <t t-esc="course.name"/>
+                                    </option>
+                                </t>
+                            </select>
+                        </t>
+                        <t t-else="">
+                            <input type="text" placeholder="Course Name"
+                                   t-attf-class="effect-2 form-control o_website_form_input #{'sit_input_present' if not len(course_ids) else 'sit_input_absent'}"
+                                   name="course_id"
+                            />
+                        </t>
+                        <!--<span class="focus-border"></span>-->
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4">
+                    <input placeholder="Levels of Completion" type="text"
+                           class="sit_custom_level effect-2 form-control o_website_form_input"
+                           name="levels"
+                    />
+                    <span class="focus-border"></span>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <input type="date" placeholder="Year Of Completion"
+                           class="cert_date effect-2 form-control o_website_form_input"
+                           name="year"
+                    />
+                    <span class="focus-border"></span>
+                </div>
+            </div>
+            <div class="form-group row form-field mb32">
+                <div class="col-lg-6 col-md-6">
+                    <div class='file-input'>
+                        <input type='file' class="form-control o_website_form_input"/>
+                        <span class='button'>Choose</span>
+                        <span class='label' data-js-label="">Please Select Certificates</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-right">
+                <a class="btn btn-danger btn-sm" id="remove_detail" style="color:#fff">Remove</a>
+            </div>
+        </div>
+    </template>
+    <template id="profession_details" name="Professional Details">
+        <div class="prof_exp_details mt32">
+            <div class="form-group row form-field mb32">
+                <div class="col-lg-4 col-md-4">
+                    <input placeholder="Location" type="text"
+                           class="sit_custom_location effect-2 form-control o_website_form_input"
+                           name="location"
+                    />
+                    <span class="focus-border"></span>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <input type="date" placeholder="Start Date"
+                           class="sit_s_date effect-2 form-control o_website_form_input"
+                           name="from_date"
+                    />
+                    <span class="focus-border"></span>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <input type="date" placeholder="End Date"
+                           class="sit_e_date effect-2 form-control o_website_form_input"
+                           name="to_date"
+                    />
+                    <span class="focus-border"></span>
+                </div>
+            </div>
+            <div class="form-group row form-field  mb32">
+                <div class="col-lg-6 col-md-6">
+                    <div class='file-input'>
+                        <input type='file' class="form-control o_website_form_input"/>
+                        <span class='button'>Choose</span>
+                        <span class='label' data-js-label="">Please Select Experience Certificates
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="text-right">
+                <a class="btn btn-danger btn-sm" id="remove_detail" style="color:#fff">Remove</a>
+            </div>
+        </div>
+    </template>
+</odoo>

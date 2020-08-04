@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Seperate Template for the Login Page-->
+    <template id="frontend_layout_login" name="Frontend Layout" inherit_id="web.layout" primary="True">
+        <xpath expr="//head/link[last()]" position="after">
+            <t t-call-assets="web.assets_common" t-js="false"/>
+            <t t-call-assets="web.assets_frontend" t-js="false"/>
+        </xpath>
+        <xpath expr="//head/script" position="after">
+            <script type="text/javascript">
+                odoo.session_info =<t t-raw="json.dumps(request.env['ir.http'].get_frontend_session_info())"/>;
+            </script>
+            <t t-call-assets="web.assets_common_minimal_js" t-css="false" defer_load="True"/>
+            <t t-call-assets="web.assets_frontend_minimal_js" t-css="false" defer_load="True"/>
+            <t t-call="web.conditional_assets_tests"/>
+            <t t-call-assets="web.assets_common_lazy" t-css="false" lazy_load="True"/>
+            <t t-call-assets="web.assets_frontend_lazy" t-css="false" lazy_load="True"/>
+        </xpath>
+        <xpath expr="//t[@t-raw='0']" position="replace">
+            <div id="wrapwrap" t-attf-class="s-height #{pageName or ''}">
+
+                <main class="s-container d-block w-100">
+                    <t t-raw="0"/>
+                </main>
+
+            </div>
+        </xpath>
+    </template>
+
+    <template id="header" inherit_id="portal.frontend_layout" name="Header">
+        <xpath expr="//ul[@id='top_menu']" position="attributes">
+            <attribute name="class">nav navbar-nav sit-menu-nav s-nav-bar</attribute>
+        </xpath>
+        <xpath expr="//nav[hasclass('navbar-expand-md')]" position="attributes">
+            <attribute name="class">navbar navbar-expand-md s-navbar-color</attribute>
+        </xpath>
+        <xpath expr="//a[@class='nav-link dropdown-toggle']" position="attributes">
+        </xpath>
+        <xpath expr="//li[@class='nav-item divider']" position="replace"></xpath>
+        <xpath expr="//li[@class='nav-item dropdown']" position="replace">
+        </xpath>
+        <xpath expr="//ul[@id='top_menu']" position="after">
+
+            <div class="s-fade-loader"></div>
+            <ul class="s-list-style d-inline-block mb0 pull-right s-user-header">
+                <li groups="base.group_public" class="nav-item s-li-style s-margin-top">
+                    <a t-attf-href="/web/login" class="nav-link">
+                        <p class="mb0 mt0">Sign in</p>
+                    </a>
+                </li>
+                <t t-if="user_id._is_public()">
+                    <li class="nav-item s-li-style s-margin-top">
+                        <a class="nav-link" href="#" style="padding-right:0;">
+                            <span>
+                                <i class="fa fa-bell-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                </t>
+                <li class="nav-item dropdown s-li-style" t-ignore="true" t-if="not user_id._is_public()">
+                    <a href="/customer-details" class="nav-link pt0">
+                        <span class="s-first-letter">
+                            <t t-esc="user_id.name[:1]"></t>
+                        </span>
+                        <p class="mb0 mt0 s-margin-class">
+                            <span t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name"/>
+                        </p>
+                        <p class="mb0 mt0">
+                            <span class="s-sub-user">
+                                <t t-esc="user_id.company_id.name"></t>
+                            </span>
+                        </p>
+                    </a>
+                </li>
+                <t t-if="not user_id._is_public()">
+                    <li class="nav-item s-li-style s-margin-top s-margin-right">
+                        <a class="nav-link" href="#">
+                            <span>
+                                <i class="fa fa-bell-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                </t>
+                <li class="nav-item s-li-style s-margin-top">
+                    <a class="nav-link s-padding-right" href="#">
+                        <span>
+                            <i class="fa fa-search"></i>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+
+        </xpath>
+    </template>
+    <template id="signin_button" inherit_id="portal.portal_show_sign_in" name="Show Sign In">
+        <xpath expr="//li[@class='nav-item divider']" position="replace">
+        </xpath>
+        <xpath expr="//li[@class='nav-item']" position="replace">
+
+        </xpath>
+
+    </template>
+
+    <template id="event_page" name="Events">
+        <t t-call="sit_portal_dashboard.header">
+            <div class="s-bg-color d-inline-block w-100 s-remove-footer">
+                <div class="container">
+                    <div clas="container">
+                        <div class="col-md-12 col-lg-12 pt32 pb32 d-inline-block">
+                            <h1 class="pull-left s-heading text-white">No Events found...</h1>
+                        </div>
+                        <div class="row mt32">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-inline-block w-100 mt64 mb64">
+                <div class="container"/>
+            </div>
+        </t>
+    </template>
+
+
+    <template id="checklist_page" name="Checklist">
+        <t t-call="sit_portal_dashboard.header">
+            <div class="s-bg-color d-inline-block w-100 s-remove-footer">
+                <div class="container">
+                    <div clas="container">
+                        <div class="col-md-12 col-lg-12 pt32 pb32 d-inline-block">
+                            <h1 class="pull-left s-heading text-white">No Checklist found...</h1>
+                        </div>
+                        <div class="row mt32">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-inline-block w-100 mt64 mb64">
+                <div class="container"/>
+            </div>
+        </t>
+    </template>
+
+    <template id="feedback_page" name="Feedback">
+        <t t-call="sit_portal_dashboard.header">
+            <div class="s-bg-color d-inline-block w-100 s-remove-footer">
+                <div class="container">
+                    <div clas="container">
+                        <div class="col-md-12 col-lg-12 pt32 pb32 d-inline-block">
+                            <h1 class="pull-left s-heading text-white">No Feedback found...</h1>
+                        </div>
+                        <div class="row mt32">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-inline-block w-100 mt64 mb64">
+                <div class="container"/>
+            </div>
+        </t>
+    </template>
+</odoo>

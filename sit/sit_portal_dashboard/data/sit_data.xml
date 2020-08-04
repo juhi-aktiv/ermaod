@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sit_menu_events" model="website.menu">
+            <field name="name">Events</field>
+            <field name="url">/events</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">31</field>
+        </record>
+        <record id="sit_menu_iventory" model="website.menu">
+            <field name="name">Inventory</field>
+            <field name="url">/inventory</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">32</field>
+        </record>
+        <record id="sit_menu_checklist" model="website.menu">
+            <field name="name">Checklist</field>
+            <field name="url">/checklist</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">33</field>
+        </record>
+        <record id="sit_menu_feedback" model="website.menu">
+            <field name="name">Feedback</field>
+            <field name="url">/feedback</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">34</field>
+        </record>
+
+        <delete model="website.menu" search="[('name','=','Home')]"/>
+        <delete model="website.menu" search="[('name','=','Contact us')]"/>
+    </data>
+</odoo>

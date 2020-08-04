@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="sit_dashboard" name="Dashboard" key="sit_portal_dashboard.sit_dashboard">
+            <t t-call="website.layout">
+                <div class="s-bg-color d-inline-block w-100 s-remove-footer">
+                    <div class="container">
+                        <div clas="container">
+                            <div class="col-md-12 col-lg-12 pt32 pb32 d-inline-block">
+                                <h1 class="pull-left s-heading text-white">Lorem Ipsum</h1>
+                            </div>
+                            <div class="row mt32">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-inline-block w-100 mt64 mb64">
+                    <div class="container">
+                        <p class="mt16 s-max-width">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque aliquam tristique
+                            nisi mattis tincidunt. Duis ullamcorper, odio quis tempor eleifend, diam dui dictum risus,
+                            eu volutpat ante eros quis odio. Phasellus volutpat ut velit at commodo. Quisque imperdiet
+                            quam vel iaculis pellentesque. Cras ante enim, auctor vel erat nec, consequat vestibulum ex.
+                            Nunc vitae mattis sapien. Duis facilisis arcu nec felis suscipit sagittis.
+                        </p>
+                        <p class="mt16 s-max-width">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque aliquam tristique
+                            nisi mattis tincidunt. Duis ullamcorper, odio quis tempor eleifend, diam dui dictum risus,
+                            eu volutpat ante eros quis odio. Phasellus volutpat ut velit at commodo. Quisque imperdiet
+                            quam vel iaculis pellentesque. Cras ante enim, auctor vel erat nec, consequat vestibulum ex.
+                            Nunc vitae mattis sapien. Duis facilisis arcu nec felis suscipit sagittis.
+                        </p>
+                    </div>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

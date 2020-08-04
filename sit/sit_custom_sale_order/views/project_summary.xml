@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_project_summary" model="ir.ui.view">
+        <field name="name">project.summary.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='order_lines']" position="after">
+                <page groups="base.group_no_one" string="Project Summary" name="project_summary">
+                    <group>
+                        
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

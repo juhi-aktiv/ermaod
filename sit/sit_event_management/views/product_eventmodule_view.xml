@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product_product_tree_event_event" model="ir.ui.view">
+            <field name="name">product.eventmodule.event.tree</field>
+            <field name="model">product.eventmodule</field>
+            <field name="arch" type="xml">
+                <tree string="Eventmodule">
+                    <field name="description_intern" string="Description Intern"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="product_product_form_event_event" model="ir.ui.view">
+            <field name="name">product.eventmodule.event.form</field>
+            <field name="model">product.eventmodule</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Eventmodule">
+                    <sheet>
+                        <field name="image_1920" widget="image" class="oe_avatar" options="{'preview_image': 'image_128'}"/>
+                        <div class="oe_title pr-0">
+                            <h1>
+                                <field name="description_intern" string="Description Intern" required="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="description_extern"/>
+                                <field name="lst_price"/>
+                                <field name="product_employee"/>
+                                <field name="checklist_number"/>
+                                <field name="attachment_ids" widget="binary"/>
+                            </group>
+                            <group>
+                                <field name="is_auto"/>
+                                <field name="to_press"/>
+                                <field name="is_parts_locked"/>
+                                <field name="is_visible"/>
+                                <field name="is_revision_completed"/>
+                                <field name="is_briefing_available"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Description" name="description">
+                                <label for="text_intern" class="oe_editable"/>
+                                <field name="text_intern" type="html"/>
+                                <label for="text_extern" class="oe_editable"/>
+                                <field name="text_extern" type="html"/>
+                            </page>
+                            <page string="Parts" name="products">
+                                <label for="product_ids"/>
+                                <field name="product_ids" domain="[('is_eventmodule', '=', True)]"/>
+                            </page>
+                            <page string="Checklist" name="checklist">
+                                <group>
+                                    <group>
+                                        <field name="checklist_ids" widget="many2many_tags"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Skills" name="skills">
+                                <group>
+                                    <group>
+                                        <field name="skill_ids" widget="many2many_tags"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="product_product_search_event_event" model="ir.ui.view">
+            <field name="name">event.product.eventmodule.search.form</field>
+            <field name="model">product.eventmodule</field>
+            <field name="arch" type="xml">
+               <search string="Eventmodule">
+                    <field name="description_intern"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_product_eventmodule" model="ir.actions.act_window">
+            <field name="name">Eventmodule</field>
+            <field name="res_model">product.eventmodule</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context"></field>
+            <field name="search_view_id" ref="product_product_search_event_event"/>
+        </record>
+
+        <record id="product_eventmodule_action_view_order_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="product_product_tree_event_event"/>
+            <field name="act_window_id" ref="action_product_eventmodule"/>
+        </record>
+
+        <record id="product_eventmodule_action_view_order_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="product_product_form_event_event"/>
+            <field name="act_window_id" ref="action_product_eventmodule"/>
+        </record>
+
+        <menuitem name="Eventmodule" id="menu_eventmodule" parent="sale.product_menu_catalog" action="action_product_eventmodule" sequence="6"/>
+
+
+    </data>
+</odoo>

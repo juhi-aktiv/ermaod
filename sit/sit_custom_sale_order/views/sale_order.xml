@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_order_form_inherit_sale_order" model="ir.ui.view">
+        <field name="name">sale.order.inherit.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!-- INHERITED FOR REMOVING EDITABLE TREE VIEW -->
+            <xpath expr="//tree" position="inside">
+                <field name="is_master_event" invisible="1"/>
+                <field name="color" invisible="1"/>
+                <field name="custom_sequence_new" invisible="1"/>
+                <field name="is_duplicate" invisible="1" />
+                <field name="is_inactive" invisible="1" />
+            </xpath>
+            <xpath expr="//tree/field[@name='product_uom']" position="replace">
+                <field
+                        name="product_uom"
+                        force_save="1"
+                        string="UoM"
+                        attrs="{
+                        'readonly': [('state', 'in', ('sale','done', 'cancel'))],
+                        'required': [('display_type', '=', False)],
+                        'invisible' : [('is_master_event','=', True)]
+                    }"
+                        context="{'company_id': parent.company_id}"
+                        groups="uom.group_uom"
+                        options='{"no_open": True}'
+                        optional="show"
+                />
+            </xpath>
+            <xpath expr="//tree/field[@name='price_unit']" position="replace">
+                <field
+                        name="price_unit"
+                        attrs="{'readonly': [('qty_invoiced', '&gt;', 0)],
+                    'invisible' : [('is_master_event','=', True)]}"
+                />
+            </xpath>
+
+            <xpath expr="//tree/field[@name='tax_id']" position="replace">
+                <field
+                        name="tax_id"
+                        widget="many2many_tags"
+                        options="{'no_create': True}"
+                        domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]"
+                        attrs="{'readonly': [('qty_invoiced', '&gt;', 0)], 'invisible' : [('is_master_event','=', True)]}"
+                        optional="show"
+                />
+            </xpath>
+            <xpath expr="//tree/field[@name='price_subtotal']" position="replace">
+                <field name="price_subtotal" widget="monetary"
+                       groups="account.group_show_line_subtotals_tax_excluded"
+                       attrs="{'invisible' : [('is_master_event','=', True)]}"
+                />
+            </xpath>
+
+            <!-- Remove the Editable for Tree View and Highlight the Event Type Product -->
+            <xpath expr="//tree" position="attributes">
+                <attribute name="editable"/>
+                <attribute name="class">sit_custom_class</attribute>
+
+                <attribute name="decoration-bf">(is_master_event == True)</attribute>
+<!--
+                <attribute name="t-att-class">abcww if (is_master_event == False)</attribute>
+-->
+                <attribute name="decoration-warning">(is_inactive == True)</attribute>
+                <attribute name="decoration-danger">(is_duplicate == True)</attribute>
+            </xpath>
+
+            <!-- Add Quotation Field -->
+            <xpath expr="//tree/control" position="inside">
+                <create name="add_quotation_control" string="Add a Quotation"
+                        context="{'default_display_type': 'q_temp'}"/>
+            </xpath>
+
+            <!-- INHERITED TO ADD EVENTS AND REMOVE OTHER UNNECESSARY FIELDS -->
+            <xpath expr="//field[@name='order_line']/form" position="replace">
+                <form>
+                    <field name="display_type" invisible="1"/>
+                    <field name="is_master_event" invisible="1" />
+                    <field name="sequence" invisible="1"/>
+                    <field name="product_uom_category_id" invisible="1"/>
+                    <group>
+                        <group attrs="{'invisible': [('display_type', '!=', False)]}">
+                            <field name="product_updatable" invisible="1"/>
+                            <field name="product_id"
+                                   domain="[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"
+                                   context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom, 'company_id': parent.company_id}"
+                                   attrs="{
+                                    'readonly': [('product_updatable', '=', False)],
+                                    'required': [('display_type', '=', False)],
+                                }"
+                                   force_save="1"
+                                   widget="many2one_barcode"
+                            />
+                            <field name="invoice_status" invisible="1"/>
+                            <field name="qty_to_invoice" invisible="1"/>
+                            <field name="qty_delivered_manual" invisible="1"/>
+                            <field name="qty_delivered_method" invisible="1"/>
+                            <field name="price_total" invisible="1"/>
+                            <field name="price_tax" invisible="1"/>
+                            <field name="is_master_event" invisible="1"/>
+                            <field name="price_subtotal" invisible="1"/>
+                            <label for="product_uom_qty"/>
+                            <div class="o_row" name="ordered_qty">
+                                <field
+                                        context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom, 'uom_qty_change':True, 'company_id': parent.company_id}"
+                                        name="product_uom_qty"
+                                        attrs="{
+                                        'readonly': [('is_master_event', '=', False)]}"
+                                />
+                                <field
+                                        name="product_uom"
+                                        force_save="1"
+                                        groups="uom.group_uom"
+                                        class="oe_no_button"
+                                        attrs="{
+                                        'readonly': [('is_master_event', '=', False),('state', 'in', ('sale', 'done', 'cancel'))],
+                                        'required': [('display_type', '=', False)],
+                                    }"
+                                />
+                            </div>
+                            <label for="qty_delivered" string="Delivered"
+                                   attrs="{'invisible': [('parent.state', 'not in', ['sale', 'done'])]}"/>
+                            <div name="delivered_qty"
+                                 attrs="{'invisible': [('parent.state', 'not in', ['sale', 'done'])]}">
+                                <field name="qty_delivered"
+                                       attrs="{'readonly': [('qty_delivered_method', '!=', 'manual')]}"/>
+                            </div>
+                            <label for="qty_invoiced" string="Invoiced"
+                                   attrs="{'invisible': [('parent.state', 'not in', ['sale', 'done'])]}"/>
+                            <div name="invoiced_qty"
+                                 attrs="{'invisible': [('parent.state', 'not in', ['sale', 'done'])]}">
+                                <field name="qty_invoiced"
+                                       attrs="{'invisible': [('parent.state', 'not in', ['sale', 'done'])]}"/>
+                            </div>
+                            <field name="price_unit"/>
+                            <field name="tax_id" widget="many2many_tags" options="{'no_create': True}"
+                                   context="{'search_view_ref': 'account.account_tax_view_search'}"
+                                   domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]"
+                                   attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"/>
+                            <label for="discount" groups="product.group_discount_per_so_line"/>
+                            <div name="discount" groups="product.group_discount_per_so_line">
+                                <field name="discount" class="oe_inline"/>
+                                %%
+                            </div>
+                            <!--
+                                We need the sequence field to be here
+                                because we want to be able to overwrite the default sequence value in the JS
+                                in order for new lines to be added at the correct position.
+                                NOTE: at some point we want to fix this in the framework so that an invisible field is not required.
+                            -->
+                            <field name="sequence" invisible="1"/>
+                        </group>
+                    </group>
+
+                    <group attrs="{'invisible': [('display_type', '!=', False)]}">
+                            <field name="is_master_event" />
+                        <field name="event_id" force_save="1">
+                            <tree editable="bottom" create="0" delete="1" decoration-danger="is_duplicate == True" decoration-warning="is_inactive == True">
+                                <field name="color" invisible="1" force_save="1" />
+                                <field name="is_duplicate" invisible="1" force_save="1" />
+                                <field name="name" force_save="1" />
+                                <field name="custom_sequence" invisible="1" force_save="1" />
+                                <field name="from_date" required="True" force_save="1"/>
+                                <field name="to_date" required="True" force_save="1"/>
+                                <field name="is_inactive" force_save="1"/>
+                            </tree>
+                            <form>
+                                <group>
+                                <field name="color" invisible="1" />
+                                <field name="is_duplicate" invisible="1" />
+                                <field name="name" />
+                                <field name="custom_sequence" invisible="1" />
+                                <field name="from_date" required="True"/>
+                                <field name="to_date" required="True"/>
+                                <field name="is_inactive" />
+                                </group>
+                            </form>
+                        </field>
+
+                    </group>
+
+                    <group attrs="{'invisible': [('display_type', '!=', 'q_temp')]}" >
+                        <field name="sale_order_template_id" context="{'display_type': 'q_temp'}"/>
+                    </group>
+                    <!--
+                                        <label for="name" string="Description" attrs="{'invisible': [('display_type', '!=', False),('display_type', '=', 'q_temp')]}"/>
+                    -->
+                    <label for="name" string="Section Name (eg. Products, Services)"
+                           attrs="{'invisible': [('display_type', '!=', 'line_section')]}"/>
+                    <label for="name" string="Note" attrs="{'invisible': [('display_type', '!=', 'line_note')]}"/>
+                    <field name="name" widget="section_and_note_text" optional="show"
+                           attrs="{'invisible':[('display_type', '=', False)]}"/>
+                    <field name="state" invisible="1"/>
+                    <field name="company_id" invisible="1"/>
+                </form>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

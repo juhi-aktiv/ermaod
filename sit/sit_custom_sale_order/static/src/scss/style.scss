@@ -1,0 +1,17 @@
+.sit_custom_class .table-hover tbody tr.text-bf:hover {
+    color: #000;
+    background-color:#ccc !important;
+}
+.sit_custom_class .table-striped tbody tr:nth-of-type(odd)
+{
+background-color:#fff;
+}
+.sit_custom_class tr.text-bf{
+background-color:#ccc !important;
+color:#000 !important;
+}
+.hide_trash_buton .text-muted .fa-trash-o
+{
+display:none !important;
+color:#000 !important;
+}

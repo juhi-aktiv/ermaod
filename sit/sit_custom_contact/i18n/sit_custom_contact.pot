@@ -1,0 +1,66 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sit_custom_contact
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-12 13:50+0000\n"
+"PO-Revision-Date: 2020-02-12 13:50+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sit_custom_contact
+#: model:ir.model.fields,field_description:sit_custom_contact.field_res_partner_category__org_code
+msgid "Code"
+msgstr ""
+
+#. module: sit_custom_contact
+#: model:ir.model,name:sit_custom_contact.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: sit_custom_contact
+#: model:ir.model.fields,field_description:sit_custom_contact.field_res_partner__department
+#: model:ir.model.fields,field_description:sit_custom_contact.field_res_users__department
+msgid "Department"
+msgstr ""
+
+#. module: sit_custom_contact
+#: model:ir.model.fields,field_description:sit_custom_contact.field_res_partner__fax
+#: model:ir.model.fields,field_description:sit_custom_contact.field_res_users__fax
+msgid "Fax"
+msgstr ""
+
+#. module: sit_custom_contact
+#: model:ir.model.fields,field_description:sit_custom_contact.field_res_partner__mail_merge
+#: model:ir.model.fields,field_description:sit_custom_contact.field_res_users__mail_merge
+msgid "Mail merge"
+msgstr ""
+
+#. module: sit_custom_contact
+#: model:ir.model.fields,field_description:sit_custom_contact.field_res_partner__is_newsletter
+#: model:ir.model.fields,field_description:sit_custom_contact.field_res_users__is_newsletter
+msgid "Newsletter"
+msgstr ""
+
+#. module: sit_custom_contact
+#: model:ir.model.fields,field_description:sit_custom_contact.field_res_partner__is_newsletter_pers
+#: model:ir.model.fields,field_description:sit_custom_contact.field_res_users__is_newsletter_pers
+msgid "Newsletter Pers"
+msgstr ""
+
+#. module: sit_custom_contact
+#: model:ir.model,name:sit_custom_contact.model_res_partner_category
+msgid "Partner Tags"
+msgstr ""
+
+#. module: sit_custom_contact
+#: model_terms:ir.ui.view,arch_db:sit_custom_contact.res_partner_form_inherit
+msgid "Saluation"
+msgstr ""

@@ -1,0 +1,245 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sit_event_management
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-12 13:55+0000\n"
+"PO-Revision-Date: 2020-02-12 13:55+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_product_eventmodule__attachment_ids
+msgid "Attachments"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_product_eventmodule__is_auto
+msgid "Auto"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_product_eventmodule__is_briefing_available
+msgid "Briefing Available"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.actions.act_window,name:sit_event_management.action_view_checklist
+#: model:ir.model,name:sit_event_management.model_event_checklist
+#: model:ir.model.fields,field_description:sit_event_management.field_product_eventmodule__checklist_ids
+#: model:ir.ui.menu,name:sit_event_management.menu_checklist
+#: model_terms:ir.ui.view,arch_db:sit_event_management.eramod_checklist_view_form
+#: model_terms:ir.ui.view,arch_db:sit_event_management.eramod_checklist_view_search
+#: model_terms:ir.ui.view,arch_db:sit_event_management.eramod_checklist_view_tree
+#: model_terms:ir.ui.view,arch_db:sit_event_management.product_product_form_event_event
+msgid "Checklist"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_event_checklist__create_uid
+#: model:ir.model.fields,field_description:sit_event_management.field_product_eventmodule__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_event_checklist__create_date
+#: model:ir.model.fields,field_description:sit_event_management.field_product_eventmodule__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_event_checklist__description
+#: model_terms:ir.ui.view,arch_db:sit_event_management.eramod_checklist_view_form
+#: model_terms:ir.ui.view,arch_db:sit_event_management.product_product_form_event_event
+msgid "Description"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_product_eventmodule__description_extern
+msgid "Description Extern"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_product_eventmodule__description_intern
+#: model_terms:ir.ui.view,arch_db:sit_event_management.product_product_form_event_event
+#: model_terms:ir.ui.view,arch_db:sit_event_management.product_product_tree_event_event
+msgid "Description Intern"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_event_checklist__display_name
+#: model:ir.model.fields,field_description:sit_event_management.field_product_eventmodule__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_event_checklist__is_email_customer
+msgid "Email customer"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_product_eventmodule__product_employee
+msgid "Employee"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_product_eventmodule__product_ids
+msgid "Event Products"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_event_checklist__is_event_print
+msgid "Event print"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.actions.act_window,name:sit_event_management.action_product_eventmodule
+#: model:ir.model,name:sit_event_management.model_product_eventmodule
+#: model:ir.ui.menu,name:sit_event_management.menu_eventmodule
+#: model_terms:ir.ui.view,arch_db:sit_event_management.product_product_form_event_event
+#: model_terms:ir.ui.view,arch_db:sit_event_management.product_product_search_event_event
+#: model_terms:ir.ui.view,arch_db:sit_event_management.product_product_tree_event_event
+msgid "Eventmodule"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_event_checklist__name_ext
+msgid "External"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_event_checklist__id
+#: model:ir.model.fields,field_description:sit_event_management.field_product_eventmodule__id
+msgid "ID"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_product_eventmodule__image_1920
+msgid "Image"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_event_checklist__is_KIS
+msgid "KIS"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_event_checklist____last_update
+#: model:ir.model.fields,field_description:sit_event_management.field_product_eventmodule____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_event_checklist__write_uid
+#: model:ir.model.fields,field_description:sit_event_management.field_product_eventmodule__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_event_checklist__write_date
+#: model:ir.model.fields,field_description:sit_event_management.field_product_eventmodule__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_event_checklist__is_mail_event_manager
+msgid "Mail Event Manager"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_event_checklist__is_mail_MA
+msgid "Mail MA"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_event_checklist__is_module
+msgid "Module"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_product_eventmodule__checklist_number
+msgid "Number"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_event_checklist__is_offer
+msgid "Offer"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_event_checklist__is_packlist
+msgid "Packing list"
+msgstr ""
+
+#. module: sit_event_management
+#: model_terms:ir.ui.view,arch_db:sit_event_management.product_product_form_event_event
+msgid "Parts"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_product_eventmodule__is_parts_locked
+msgid "Parts locked"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_event_checklist__name_int
+msgid "Print"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_product_eventmodule__product_id
+msgid "Product"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_product_eventmodule__lst_price
+msgid "Public Price"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_product_eventmodule__is_revision_completed
+msgid "Revision Completed"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_event_checklist__is_sms
+msgid "SMS"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_product_eventmodule__skill_ids
+#: model_terms:ir.ui.view,arch_db:sit_event_management.product_product_form_event_event
+msgid "Skills"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_product_eventmodule__text_extern
+msgid "Text Extern"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_product_eventmodule__text_intern
+msgid "Text Intern"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_product_eventmodule__to_press
+msgid "To press"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_product_eventmodule__is_visible
+msgid "Visible"
+msgstr ""
+
+#. module: sit_event_management
+#: model:ir.model.fields,field_description:sit_event_management.field_event_checklist__name
+msgid "name"
+msgstr ""

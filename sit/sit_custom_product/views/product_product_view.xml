@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product_normal_form_view_inherit" model="ir.ui.view">
+            <field name="name">product.product.inherit.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='options']/div[last()]" position="after">
+                    <field name="is_eventmodule"/>
+                    <label for="is_eventmodule"/>
+                </xpath>
+                <field name="company_id" position="before">
+                    <field name="is_partner_part"/>
+                    <field name="is_sump_up"/>
+                    <field name="is_variable"/>
+                    <field name="bestsell_number"/>
+                    <field name="minimal"/>
+                    <field name="percent_return"/>
+                    <field name="is_creative"/>
+                    <field name="is_stocktaking"/>
+                </field>
+            </field>
+        </record>
+        <record id="product_category_form_view_inherit" model="ir.ui.view">
+            <field name="name">product.category.inherit.form</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="product.product_category_form_view"/>
+            <field name="arch" type="xml">
+                <field name="parent_id" position="after">
+                    <field name="categ_code" readonly="1"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,460 @@
+/*-----------Portal Login Page---------------*/
+/*
+1. web login
+2. Header
+3. Focus on Input Style
+4. Portal Page
+*/
+/*----------------Font Family------------------*/
+@font-face {
+	font-family: 'Brother-1816-Regular';
+	src: url('/sit_portal_dashboard/static/src/fonts/Brother-1816-Regular.eot?#iefix') format('embedded-opentype'),
+	    url('/sit_portal_dashboard/static/src/fonts/Brother-1816-Regular.woff') format('woff'),
+	    url('/sit_portal_dashboard/static/src/fonts/Brother-1816-Regular.ttf')  format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Brother-1816-Medium';
+	src: url('/sit_portal_dashboard/static/src/fonts/Brother-1816-Medium.eot?#iefix') format('embedded-opentype'),
+	    url('/sit_portal_dashboard/static/src/fonts/Brother-1816-Medium.woff') format('woff'),
+	    url('/sit_portal_dashboard/static/src/fonts/Brother-1816-Medium.ttf')  format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+/*------------------Variables--------------------*/
+$font-family-base:"Brother-1816-Regular";
+$headings-font-family : "Brother-1816-Medium";
+$line-height-base:            1.7;
+$line-height-lg:              1.7;
+$line-height-sm:              1.7;
+$theme-color:#efb03c;
+
+/*--1--*/
+.s-container
+{
+    margin: 0px auto;
+}
+.s-portal-img
+{
+    max-width: 100%;
+    display: block;
+    margin: 0px auto;
+    width: auto;
+}
+.s-height
+{
+    min-height:100vh;
+    background-color: $theme-color;
+}
+.s-white-height
+{
+    min-height:100vh;
+    background-color: #cccccc;
+}
+/*--2--*/
+.s-max-width
+{
+    max-width: 70%;
+    display: block;
+    margin: 0px auto;
+}
+.s-margin
+{
+    margin:0px auto;
+    max-width: 420px !important;
+}
+.s-form-height
+{
+    height: calc(1.5em + 0.75rem + 10px);
+}
+.s-relative
+{
+    position:relative;
+}
+.field-icon {
+  float: right;
+  right:11px;
+  margin-top: -28px;
+  position: relative;
+  z-index: 2;
+}
+.s-font
+{
+    font-size:25px;
+}
+.navbar-brand img
+{
+    display:block;
+    margin:0px auto;
+    max-width: 180px;
+}
+.s-reset-password
+{
+    text-align: center;
+    display: block;
+    margin: 0px auto;
+    font-size: 13px;
+    border-bottom: 1px dotted #000;
+    color: #000;
+    &:hover
+    {
+        text-decoration:none;
+        color: #000;
+    }
+}
+.s-navbar-color
+{
+    background-color:$theme-color;
+    box-shadow: 0px 0px 10px 0px #202435;
+    z-index: 99;
+}
+#top_menu
+{
+    width:70%;
+    position:relative;
+    li{
+        a{
+            color:#fff;
+            font-family:Brother-1816-Medium;
+            position:relative;
+            padding: 14px 17px 14px 17px;
+            font-size: 12px;
+
+            &.active span::after
+            {
+              border-bottom: 3px solid #ffffff;
+              bottom: -10px;
+              content: " ";
+              left: 0;
+              position: absolute;
+              right: 0;
+            }
+        }
+    }
+}
+.s-user-header
+{
+    width: auto;
+    padding-left: 0;
+    display: flex !important;
+    flex-direction: row-reverse;
+    flex-basis: auto;
+    flex-grow: inherit;
+}
+.s-li-style
+{
+    float: right;
+}
+.s-margin-top
+{
+    margin-top: 3px;
+}
+.s-bg-color
+{
+    background-color:$theme-color;
+}
+.s-heading{
+    font-size: 28px;
+    padding-left: 11px;
+}
+.s-border{
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+.s-padding
+{
+    padding: 11px 2px 11px 18px;
+}
+.s-first-letter
+{
+    border: 1px solid #e19303;
+    background-color: #e19303;
+    padding: 3px 12px 5px 11px;
+    border-radius: 100%;
+    font-weight: bold;
+    position: absolute;
+    left: -27px;
+}
+.s-margin-right
+{
+    margin-right: 23px;
+}
+.s-sub-user
+{
+    font-size: 9px;
+}
+.s-list-style
+{
+    li{
+        list-style:none;
+    }
+}
+.s-list-style a{
+    color:#fff;
+}
+.s-margin-class
+{
+    line-height: 0.8;
+    margin-top: 6px !important;
+}
+.s-padding-right
+{
+    padding-right:0;
+}
+/*--3--*/
+input:focus ~ .floating-label,
+input:not(:focus):valid ~ .floating-label{
+  top: 1px;
+  bottom: 10px;
+  left: 14px;
+  font-size: 8px;
+  opacity: 1;
+  color:#495057;
+}
+.floating-label {
+  position: absolute;
+  pointer-events: none;
+  left: 14px;
+  top: 10px;
+  transition: 0.2s ease all;
+}
+.field-login
+{
+  border: 1px solid $theme-color !important;
+}
+.field-login:hover
+{
+  border: 1px solid $theme-color !important;
+}
+.field-password
+{
+  border: 1px solid $theme-color !important;
+}
+.field-password:hover
+{
+  border: 1px solid $theme-color !important;
+}
+.btn-primary
+{
+    background-color:$theme-color !important;
+    border:1px solid $theme-color !important;
+}
+.btn-primary:hover
+{
+    background-color:#ffffff !important;
+
+    border:1px solid $theme-color !important;
+    color:#000 !important;
+    a
+    {
+        color:#f9b122;
+    }
+}
+
+/*-- 4. Porta/Customer Details---*/
+.s-first-letter-portal
+{
+    border: 1px solid #efefef;
+    background-color: #efefef;
+    top:5px;
+    padding: 7px 11px 9px 10px;
+    border-radius: 100%;
+    font-weight: bold;
+}
+.s-portal-weight
+{
+    font-weight: 700;
+}
+.s-main-customer
+{
+    border-bottom:1px solid #ccc;
+}
+.s-portal-first-letter-p
+{
+    width: 17%;
+    margin-bottom: 0px;
+    margin-top: 6px;
+}
+.s-width-80
+{
+    width:80%;
+}
+.s-nav-bar
+{
+li a{
+font-size:16px !important;
+}
+}
+.s-menu-names
+{
+margin-left:13px;
+font-size: 15px;
+color: #686868 !important;
+}
+.s-ul-portal
+{
+padding-left:0px;
+}
+.s-li-portal
+{
+padding: 12px 10px 14px 9px;
+&:hover
+{
+text-decoration: none;
+background-color: #efefef;
+}
+}
+.s-img-margin-portal{
+margin-top: -5px;
+}
+.s-portal-common-heading
+{
+    font-size: 25px;
+    border-bottom: 1px solid #ccc;
+    margin-top: 5px;
+}
+.s-border-box-portal
+{
+    border:1px solid #ccc;
+    border-radius:5px;
+    padding: 15px;
+}
+.s-portal-input
+{
+    padding: 14px;
+    width: 100% !important;
+    border-color: #ccc !important;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    &:focus
+    {
+        border:1px solid #f9b122;
+    }
+}
+.s-caps-portal
+{
+text-transform:uppercase;
+}
+// form label effect
+.cap_tran_label
+{
+	position: absolute;
+    left: 6px;
+    opacity: 0;
+    transition: all .5s ease;
+    font-size: 12px;
+    z-index: -1;
+}
+// loader
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(/sit_portal_dashboard/static/src/img/Preloader_7.gif) center no-repeat #fff;
+}
+.form-control:focus
+{
+//   border-color: #ffffff !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+.superuser
+{
+  color: #000;
+&:hover
+    {
+        text-decoration:none;
+        color: $theme-color;
+    }
+}
+
+#save_data
+{
+    display: none;
+    padding: 6px;
+    max-width: 9%;
+    margin-top: 2%;
+    font-size: 15px;
+    color: white;
+    font-weight: bold;
+}
+.s-error
+{
+    border:1px solid red;
+    border-color: red !important;
+}
+/*--------Inventory-------------*/
+.s-inv-border
+{
+    border:1px solid #ccc;
+
+}
+.s-border-bottom-inv
+{
+    border-bottom:1px solid #ccc;
+    padding: 12px;
+    &:hover
+    {
+        background-color:#efefef;
+    }
+}
+.s-inv_pclass{
+
+}
+.s-inv-proname-label{
+font-weight:bold;
+text-transform:uppercase;
+}
+.s-right-pager .pagination{
+    float:right;
+}
+.page-item.active .page-link
+{
+    background-color: $theme-color;
+    border-color: $theme-color;
+}
+.s-right-pager .page-link
+{
+color:#000;
+}
+.h1-s-heading{
+
+}
+/*-------------hover effects------------*/
+.sit-menu-nav {
+.nav-item::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 3px;
+    background: #ffffff;
+    transition: width .3s;
+    position: relative;
+    bottom: -8px;
+  }
+}
+
+.sit-menu-nav {
+    .nav-item:hover::after {
+    width: 100%;
+    position: relative;
+    bottom: -8px;
+    }
+}
+
+.sit-menu-nav {
+  #top_menu li a.active span::after {
+        border-bottom: 3px solid #ffffff !important;
+        bottom: -11px !important;
+        content: " ";
+        left: 0;
+        position: absolute;
+        right: 0;
+    }
+}

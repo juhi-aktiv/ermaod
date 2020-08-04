@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="sit_portal_details" name="Customer Details">
+            <t t-call="website.layout">
+                <div class="container mt64 mb64">
+                    <div class="row">
+                        <div class="col-md-3 w-100 d-inline-block">
+                            <div class="w-100 d-inline-block s-main-customer pb8">
+                                <p class="s-portal-first-letter-p float-left">
+                                    <span class="s-first-letter-portal">
+                                        <t t-esc="user_id.name[:2]"></t>
+                                    </span>
+                                </p>
+
+                                <p class="mb0 mt0 s-margin-class float-right s-width-80">
+                                    <span class="s-portal-weight"
+                                          t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name"/>
+                                </p>
+                                <p class="mb0 mt0 float-right s-width-80">
+                                    <span class="s-sub-user">
+                                        <t t-esc="user_id.company_id.name"></t>
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="s-ul-portal w-100 d-inline-block pt16">
+                                <a href="#company_data" class="s-li-portal w-100 d-inline-block">
+                                    <img class="s-img-margin-portal"
+                                         src="/sit_portal_dashboard/static/src/img/company.svg" alt="Company"/>
+                                    <span class="s-menu-names">Company</span>
+                                </a>
+                                <a href="#user_data" class="s-li-portal w-100 d-inline-block">
+                                    <img class="s-img-margin-portal" src="/sit_portal_dashboard/static/src/img/user.svg"
+                                         alt="Company"/>
+                                    <span class="s-menu-names">User</span>
+                                </a>
+                                <a href="#login_data" class="s-li-portal w-100 d-inline-block">
+                                    <img class="s-img-margin-portal" src="/sit_portal_dashboard/static/src/img/user.svg"
+                                         alt="Company"/>
+                                    <span class="s-menu-names">Login</span>
+                                </a>
+                                <a href="#channels_data" class="s-li-portal w-100 d-inline-block">
+                                    <img class="s-img-margin-portal"
+                                         src="/sit_portal_dashboard/static/src/img/channels.svg" alt="Channels"/>
+                                    <span class="s-menu-names">Channels</span>
+                                </a>
+                                <a href="#bills_data" class="s-li-portal w-100 d-inline-block">
+                                    <img class="s-img-margin-portal"
+                                         src="/sit_portal_dashboard/static/src/img/company.svg" alt="Company"/>
+                                    <span class="s-menu-names">Bills</span>
+                                </a>
+                            </div>
+                            <div class="w-100 d-inline-block mt8">
+                                <a id="o_logout" t-attf-href="/web/session/logout?redirect=/web/login"
+                                   class="s-li-portal w-100 d-inline-block">
+                                    <img class="s-img-margin-portal"
+                                         src="/sit_portal_dashboard/static/src/img/logout.svg" alt="Logout"/>
+
+                                    <span class="s-menu-names">Logout</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="" id="company_data">
+                                <p class="s-portal-company s-portal-common-heading">Company</p>
+                                <form action="/customer-details" class="row" method="post">
+                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                    <div class="s-border-box-portal w-100 d-inline-block">
+                                        <p>Company Data</p>
+                                        <div class="s-relative form-group col-md-9">
+                                            <input type="hidden" name="company_id" t-att-value="request.env.user.company_id.id"/>                                            <label class="col-form-label cap_tran_label" for="name">
+                                                Name
+                                            </label>
+                                            <input placeholder="Name" type="text" name="name"
+                                                   class="required_input cap_hidden_input s-portal-input form-control s-form-height"
+                                                   t-att-value="request.env.user.company_id.name"
+                                                   t-att-data="request.env.user.company_id.name"/>
+
+                                        </div>
+                                        <div t-if="request.env.user.company_id.vat"
+                                             class="s-relative form-group col-md-9">
+                                            <label class="col-form-label s-caps-portal cap_tran_label" for="name">
+                                                Vat Id
+                                            </label>
+                                            <input placeholder="Vat Id" type="text"
+                                                   class="cap_hidden_input s-portal-input form-control s-form-height"
+                                                   t-att-value="request.env.user.company_id.vat"
+                                                   t-att-data="request.env.user.company_id.vat"/>
+                                        </div>
+                                        <div class="col-ms-12 d-inline-block">
+                                            <div t-if="request.env.user.company_id.street"
+                                                 class="s-relative form-group col-md-9">
+                                                <label class="s-caps-portal col-form-label s-caps-portal cap_tran_label"
+                                                       for="name">
+                                                    Address
+                                                </label>
+                                                <input placeholder="Address" type="text"
+                                                       class="cap_hidden_input s-portal-input form-control s-form-height"
+                                                       t-att-value="request.env.user.company_id.street"
+                                                       t-att-data="request.env.user.company_id.street"/>
+                                            </div>
+                                            <div t-if="request.env.user.company_id.street2"
+                                                 class="s-relative form-group col-md-3">
+                                                <label class="s-caps-portal col-form-label s-caps-portal cap_tran_label"
+                                                       for="name">
+                                                    House Number
+                                                </label>
+                                                <input placeholder="House Number" type="text"
+                                                       class="cap_hidden_input s-portal-input form-control s-form-height"
+                                                       t-att-value="request.env.user.company_id.street2"
+                                                       t-att-data="request.env.user.company_id.street2"/>
+                                            </div>
+                                        </div>
+                                        <div t-if="request.env.user.company_id.street2"
+                                             class="s-relative form-group col-md-12">
+                                            <input type="text" class="s-portal-input form-control s-form-height"
+                                                   t-att-value="request.env.user.company_id.street2"
+                                                   t-att-data="request.env.user.company_id.street2"/>
+                                            <span class="floating-label s-caps-portal">Additional Address</span>
+                                        </div>
+                                    </div>
+                                    <a href="#" id="save_data" role="button" class="btn btn-primary btn-sm a-submit">Save</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

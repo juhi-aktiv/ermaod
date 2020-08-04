@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_hr_employee_form_inherit" model="ir.ui.view">
+            <field name="name">event.hr.employee.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr_skill_qualification.view_hr_employee_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='techskill_ids']/tree/field[@name='levels']" position="attributes">
+                    <attribute name="required">0</attribute>
+                </xpath>
+                <xpath expr="//page[@name='hr_skills']//separator[last()]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <field name="nontechskill_ids" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+            </field>
+        </record>
+        
+        <record id="view_tech_tech_tree_inherit" model="ir.ui.view">
+            <field name="name">view.tech.tech.tree.inherit</field>
+            <field name="model">tech.tech</field>
+            <field name="inherit_id" ref="hr_skill_qualification.view_tech_tech_tree"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="editable">bottom</attribute>
+                </xpath>
+                <field name="sequence" position="replace">
+                    <field name="automatically_assigned_after"/>
+                    <field name="is_special"/>
+                    <field name="is_important"/>
+                    <field name="suitable_insert"/>
+                </field>
+            </field>
+        </record>
+
+         <record id="view_tech_tech_form_form_inherit" model="ir.ui.view">
+            <field name="name">view.tech.tech.form</field>
+            <field name="model">tech.tech</field>
+            <field name="inherit_id" ref="hr_skill_qualification.view_tech_tech_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="after">
+                    <group>
+                        <group>
+                            <field name="automatically_assigned_after"/>
+                            <field name="is_special"/>
+                            <field name="is_important"/>
+                        </group>
+                        <group>
+                            <field name="suitable_insert"/>
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.menu" id="hr_skill_qualification.menu_nontech_skills">
+            <field name="action" eval="False"/>
+        </record>
+    </data>
+</odoo>
